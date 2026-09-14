@@ -1221,11 +1221,10 @@ const operators = function (isInitialSetup, isStage, targetId, colour) {
 
 const strings = function (isInitialSetup, isStage, targetId, colour) {
     // Note: the category's secondaryColour matches up with the blocks' tertiary color, both used for border color.
-    // also its pmStrings cause strings is used by the extension with strings as its id i hate that
     return `
     <category
         name="%{BKY_PM_CATEGORY_STRINGS}"
-        id="pmStrings"
+        id="strings"
         colour="${colour}"
         secondaryColour="#00000044">
         ${_strings()}
@@ -1531,7 +1530,7 @@ const makeToolboxXML = function (isInitialSetup, isStage = true, targetId, categ
     const controlXML = moveCategory('control') || control(isInitialSetup, isStage, targetId, colors.control);
     const sensingXML = moveCategory('sensing') || sensing(isInitialSetup, isStage, targetId, colors.sensing);
     const operatorsXML = moveCategory('operators') || operators(isInitialSetup, isStage, targetId, colors.operators);
-    const stringsXML = moveCategory('strings') || strings(isInitialSetup, isStage, targetId, colors.operators_strings);
+    const stringsXML = moveCategory('pmStrings') || strings(isInitialSetup, isStage, targetId, colors.operators_strings);
     const variablesXML = moveCategory('data') || variables(isInitialSetup, isStage, targetId, colors.data);
     const listsXML = moveCategory('list') || lists(isInitialSetup, isStage, targetId, colors.data_lists);
     const myBlocksXML = moveCategory('procedures') || myBlocks(isInitialSetup, isStage, targetId, colors.more);

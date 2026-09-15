@@ -1224,7 +1224,7 @@ const strings = function (isInitialSetup, isStage, targetId, colour) {
     return `
     <category
         name="%{BKY_PM_CATEGORY_STRINGS}"
-        id="strings"
+        id="pmStrings"
         colour="${colour}"
         secondaryColour="#00000044">
         ${_strings()}

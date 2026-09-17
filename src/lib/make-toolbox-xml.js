@@ -1418,6 +1418,21 @@ const _strings = function() {
             </value>
         </block>
         ${blockSeparator}
+        <block type="operator_encode">
+            <value name="TEXT">
+                <shadow type="text">
+                    <field name="TEXT">${apple}</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="operator_decode">
+            <value name="TEXT">
+                <shadow type="text">
+                    <field name="TEXT">${btoa(apple)}</field>
+                </shadow>
+            </value>
+        </block>
+        ${blockSeparator}
         <block type="operator_newLine" />
         <block type="operator_tabCharacter" />
     `

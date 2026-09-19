@@ -16,9 +16,7 @@ import {
     setProjectId
 } from '../reducers/project-state';
 
-import log from './log';
-import storage from './storage';
-import {ProjectUnsharedError, ProjectFetchError, ProjectUnavailableLegalReasons} from './tw-load-project-error';
+import { ProjectUnsharedError, ProjectFetchError, ProjectUnavailableLegalReasons } from './tw-load-project-error';
 import { activateTab, BLOCKS_TAB_INDEX } from "../reducers/editor-tab";
 import { API_SITE, ASSET_CDN_SITE } from "./brand";
 

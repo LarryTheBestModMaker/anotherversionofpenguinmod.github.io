@@ -12,6 +12,7 @@ export default Object.fromEntries([
     'blockPinning',
     'categoryReordering',
     'paintMultiTool',
+    'paintPenPressure',
     'paintScrollZoom',
     'soundDisplayDetail',
     'showExtensionIds',

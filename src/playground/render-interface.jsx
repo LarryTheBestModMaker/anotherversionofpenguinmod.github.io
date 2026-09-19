@@ -31,7 +31,6 @@ import SettingsStore from '../addons/settings-store-singleton';
 import '../lib/tw-fix-history-api';
 import GUI from './render-gui.jsx';
 import MenuBar from '../components/menu-bar/menu-bar.jsx';
-import ProjectInput from '../components/tw-project-input/project-input.jsx';
 import FeaturedProjects from '../components/tw-featured-projects/featured-projects.jsx';
 import Description from '../components/tw-description/description.jsx';
 import BrowserModal from '../components/browser-modal/browser-modal.jsx';
@@ -268,9 +267,6 @@ class Interface extends React.Component {
                             {isBrowserSupported() ? null : (
                                 <BrowserModal isRtl={isRtl} />
                             )}
-                            <div className={styles.section}>
-                                <ProjectInput />
-                            </div>
                             {hasCloudVariables && projectId !== '0' && (
                                 <div className={styles.section}>
                                     <CloudVariableBadge />

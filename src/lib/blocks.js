@@ -7,7 +7,7 @@ import LazyScratchBlocks from './tw-lazy-scratch-blocks';
  */
 export default function (vm) {
     const ScratchBlocks = LazyScratchBlocks.get();
-    const jsonForMenuBlock = function (name, menuOptionsFn, colors, start) {
+    const jsonForMenuBlock = function (name, menuOptionsFn, colour, start) {
         return {
             message0: '%1',
             args0: [
@@ -21,15 +21,12 @@ export default function (vm) {
             ],
             inputsInline: true,
             output: 'String',
-            colour: colors.secondary,
-            colourSecondary: colors.secondary,
-            colourTertiary: colors.tertiary,
-            colourQuaternary: colors.quaternary,
+            colour,
             outputShape: ScratchBlocks.OUTPUT_SHAPE_ROUND
         };
     };
 
-    const jsonForHatBlockMenu = function (hatName, name, menuOptionsFn, colors, start) {
+    const jsonForHatBlockMenu = function (hatName, name, menuOptionsFn, colour, start) {
         return {
             message0: hatName,
             args0: [
@@ -41,10 +38,7 @@ export default function (vm) {
                     }
                 }
             ],
-            colour: colors.primary,
-            colourSecondary: colors.secondary,
-            colourTertiary: colors.tertiary,
-            colourQuaternary: colors.quaternary,
+            colour,
             extensions: ['shape_hat']
         };
     };
@@ -68,10 +62,7 @@ export default function (vm) {
                 }
             ],
             output: true,
-            colour: ScratchBlocks.Colours.sensing.primary,
-            colourSecondary: ScratchBlocks.Colours.sensing.secondary,
-            colourTertiary: ScratchBlocks.Colours.sensing.tertiary,
-            colourQuaternary: ScratchBlocks.Colours.sensing.quaternary,
+            colour: ScratchBlocks.Colours.sensing,
             outputShape: ScratchBlocks.OUTPUT_SHAPE_ROUND
         };
     };
@@ -144,44 +135,32 @@ export default function (vm) {
         return [[myself, '_myself_']].concat(spriteMenu());
     };
 
-    const soundColors = ScratchBlocks.Colours.sounds;
-
-    const looksColors = ScratchBlocks.Colours.looks;
-
-    const motionColors = ScratchBlocks.Colours.motion;
-
-    const sensingColors = ScratchBlocks.Colours.sensing;
-
-    const controlColors = ScratchBlocks.Colours.control;
-
-    const eventColors = ScratchBlocks.Colours.event;
-
     ScratchBlocks.Blocks.sound_sounds_menu.init = function () {
-        const json = jsonForMenuBlock('SOUND_MENU', soundsMenu, soundColors, []);
+        const json = jsonForMenuBlock('SOUND_MENU', soundsMenu, ScratchBlocks.Colours.sounds, []);
         this.jsonInit(json);
     };
 
     ScratchBlocks.Blocks.looks_costume.init = function () {
-        const json = jsonForMenuBlock('COSTUME', costumesMenu, looksColors, []);
+        const json = jsonForMenuBlock('COSTUME', costumesMenu, ScratchBlocks.Colours.looks, []);
         this.jsonInit(json);
     };
 
     ScratchBlocks.Blocks.looks_backdrops.init = function () {
-        const json = jsonForMenuBlock('BACKDROP', backdropsMenu, looksColors, []);
+        const json = jsonForMenuBlock('BACKDROP', backdropsMenu, ScratchBlocks.Colours.looks, []);
         this.jsonInit(json);
     };
 
     ScratchBlocks.Blocks.event_whenbackdropswitchesto.init = function () {
         const json = jsonForHatBlockMenu(
             ScratchBlocks.Msg.EVENT_WHENBACKDROPSWITCHESTO,
-            'BACKDROP', backdropNamesMenu, eventColors, []);
+            'BACKDROP', backdropNamesMenu, ScratchBlocks.Colours.event, []);
         this.jsonInit(json);
     };
 
     ScratchBlocks.Blocks.motion_pointtowards_menu.init = function () {
         const random = ScratchBlocks.ScratchMsgs.translate('MOTION_POINTTOWARDS_RANDOM', 'random direction');
         const mouse = ScratchBlocks.ScratchMsgs.translate('MOTION_POINTTOWARDS_POINTER', 'mouse-pointer');
-        const json = jsonForMenuBlock('TOWARDS', spriteMenu, motionColors, [
+        const json = jsonForMenuBlock('TOWARDS', spriteMenu, ScratchBlocks.Colours.motion, [
             [mouse, '_mouse_'],
             [random, '_random_']
         ]);
@@ -191,7 +170,7 @@ export default function (vm) {
     ScratchBlocks.Blocks.motion_goto_menu.init = function () {
         const random = ScratchBlocks.ScratchMsgs.translate('MOTION_GOTO_RANDOM', 'random position');
         const mouse = ScratchBlocks.ScratchMsgs.translate('MOTION_GOTO_POINTER', 'mouse-pointer');
-        const json = jsonForMenuBlock('TO', spriteMenu, motionColors, [
+        const json = jsonForMenuBlock('TO', spriteMenu, ScratchBlocks.Colours.motion, [
             [random, '_random_'],
             [mouse, '_mouse_']
         ]);
@@ -201,7 +180,7 @@ export default function (vm) {
     ScratchBlocks.Blocks.motion_glideto_menu.init = function () {
         const random = ScratchBlocks.ScratchMsgs.translate('MOTION_GLIDETO_RANDOM', 'random position');
         const mouse = ScratchBlocks.ScratchMsgs.translate('MOTION_GLIDETO_POINTER', 'mouse-pointer');
-        const json = jsonForMenuBlock('TO', spriteMenu, motionColors, [
+        const json = jsonForMenuBlock('TO', spriteMenu, ScratchBlocks.Colours.motion, [
             [random, '_random_'],
             [mouse, '_mouse_']
         ]);
@@ -210,7 +189,7 @@ export default function (vm) {
 
     ScratchBlocks.Blocks.sensing_of_object_menu.init = function () {
         const stage = ScratchBlocks.ScratchMsgs.translate('SENSING_OF_STAGE', 'Stage');
-        const json = jsonForMenuBlock('OBJECT', spriteMenu, sensingColors, [
+        const json = jsonForMenuBlock('OBJECT', spriteMenu, ScratchBlocks.Colours.sensing, [
             [stage, '_stage_']
         ]);
         this.jsonInit(json);
@@ -300,7 +279,7 @@ export default function (vm) {
 
     ScratchBlocks.Blocks.sensing_distancetomenu.init = function () {
         const mouse = ScratchBlocks.ScratchMsgs.translate('SENSING_DISTANCETO_POINTER', 'mouse-pointer');
-        const json = jsonForMenuBlock('DISTANCETOMENU', spriteMenu, sensingColors, [
+        const json = jsonForMenuBlock('DISTANCETOMENU', spriteMenu, ScratchBlocks.Colours.sensing, [
             [mouse, '_mouse_']
         ]);
         this.jsonInit(json);
@@ -309,7 +288,7 @@ export default function (vm) {
     ScratchBlocks.Blocks.sensing_touchingobjectmenu.init = function () {
         const mouse = ScratchBlocks.ScratchMsgs.translate('SENSING_TOUCHINGOBJECT_POINTER', 'mouse-pointer');
         const edge = ScratchBlocks.ScratchMsgs.translate('SENSING_TOUCHINGOBJECT_EDGE', 'edge');
-        const json = jsonForMenuBlock('TOUCHINGOBJECTMENU', spriteMenu, sensingColors, [
+        const json = jsonForMenuBlock('TOUCHINGOBJECTMENU', spriteMenu, ScratchBlocks.Colours.sensing, [
             [mouse, '_mouse_'],
             [edge, '_edge_']
         ]);
@@ -317,7 +296,40 @@ export default function (vm) {
     };
 
     ScratchBlocks.Blocks.control_create_clone_of_menu.init = function () {
-        const json = jsonForMenuBlock('CLONE_OPTION', cloneMenu, controlColors, []);
+        const json = jsonForMenuBlock('CLONE_OPTION', cloneMenu, ScratchBlocks.Colours.control, []);
+        this.jsonInit(json);
+    };
+
+    ScratchBlocks.Blocks.control_run_as_sprite_menu.init = function () {
+        const stage = ScratchBlocks.ScratchMsgs.translate('SENSING_OF_STAGE', 'Stage');
+        const json = jsonForMenuBlock('RUN_AS_OPTION', spriteMenu, ScratchBlocks.Colours.control, [
+            [stage, '_stage_']
+        ]);
+        this.jsonInit(json);
+    };
+
+    ScratchBlocks.Blocks.control_stop_sprite_menu.init = function () {
+        const stage = ScratchBlocks.ScratchMsgs.translate('SENSING_OF_STAGE', 'Stage');
+        const json = jsonForMenuBlock('STOP_OPTION', spriteMenu, ScratchBlocks.Colours.control, [
+            [stage, '_stage_']
+        ]);
+        this.jsonInit(json);
+    };
+
+    
+    ScratchBlocks.Blocks.looks_getOtherSpriteVisible_menu.init = function () {
+        const thisSprite = ScratchBlocks.ScratchMsgs.translate('PM_LOOKS_THIS', 'this sprite');
+        const json = jsonForMenuBlock('VISIBLE_OPTION', spriteMenu, ScratchBlocks.Colours.looks, [
+            [thisSprite, '_myself_']
+        ]);
+        this.jsonInit(json);
+    };
+
+    ScratchBlocks.Blocks.looks_changeVisibilityOfSprite_menu.init = function () {
+        const thisSprite = ScratchBlocks.ScratchMsgs.translate('PM_LOOKS_THIS', 'this sprite');
+        const json = jsonForMenuBlock('VISIBLE_OPTION', spriteMenu, ScratchBlocks.Colours.looks, [
+            [thisSprite, '_myself_']
+        ]);
         this.jsonInit(json);
     };
 

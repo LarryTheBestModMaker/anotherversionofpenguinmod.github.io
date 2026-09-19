@@ -26,12 +26,15 @@ export const initialState = {
     highQualityPen: false,
     compilerOptions: {
         enabled: true,
-        warpTimer: false
+        warpTimer: false,
+        strictEquality: false
     },
     runtimeOptions: {
         maxClones: 300,
         miscLimits: true,
-        fencing: true
+        fencing: true,
+        disableOffscreenRendering: false,
+        disableDirectionClamping: false,
     },
     isWindowFullScreen: false,
     dimensions: [0, 0],

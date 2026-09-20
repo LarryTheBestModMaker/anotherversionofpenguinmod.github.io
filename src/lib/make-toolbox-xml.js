@@ -1224,7 +1224,7 @@ const strings = function (isInitialSetup, isStage, targetId, colour) {
     return `
     <category
         name="%{BKY_PM_CATEGORY_STRINGS}"
-        id="strings"
+        id="pmStrings"
         colour="${colour}"
         secondaryColour="#00000044">
         ${_strings()}
@@ -1415,6 +1415,21 @@ const _strings = function() {
         <block type="operator_code_to_character">
             <value name="ONE">
                 <shadow type="text" />
+            </value>
+        </block>
+        ${blockSeparator}
+        <block type="operator_encode">
+            <value name="TEXT">
+                <shadow type="text">
+                    <field name="TEXT">${apple}</field>
+                </shadow>
+            </value>
+        </block>
+        <block type="operator_decode">
+            <value name="TEXT">
+                <shadow type="text">
+                    <field name="TEXT">${btoa(apple)}</field>
+                </shadow>
             </value>
         </block>
         ${blockSeparator}

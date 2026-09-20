@@ -100,6 +100,7 @@ class EditorSettingsModal extends React.Component {
                     content: <React.Fragment>
                         <settings.paintMultiTool />
                         <Separator />
+                        <settings.paintPenPressure />
                         <settings.paintScrollZoom />
                     </React.Fragment>
                 },

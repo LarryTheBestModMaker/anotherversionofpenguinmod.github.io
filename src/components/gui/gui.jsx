@@ -43,6 +43,7 @@ import SplashModal from '../../containers/splash-modal.jsx';
 import {STAGE_SIZE_MODES, FIXED_WIDTH, UNCONSTRAINED_NON_STAGE_WIDTH} from '../../lib/layout-constants';
 import {resolveStageSize} from '../../lib/screen-utils';
 import {Theme} from '../../lib/themes';
+import tintFilter from '../../lib/tint-filter';
 
 import {isRendererSupported, isBrowserSupported} from '../../lib/tw-environment-support-prober';
 
@@ -175,8 +176,23 @@ const GUIComponent = props => {
         tabList: classNames(tabStyles.reactTabsTabList, styles.tabList),
         tabPanel: classNames(tabStyles.reactTabsTabPanel, styles.tabPanel),
         tabPanelSelected: classNames(tabStyles.reactTabsTabPanelSelected, styles.isSelected),
-        tabSelected: classNames(tabStyles.reactTabsTabSelected, styles.isSelected)
+        tabSelected: classNames(tabStyles.reactTabsTabSelected, styles.isSelected),
+        tabDisabled: classNames(tabStyles.reactTabsTab, styles.tab, styles.isDisabled)
     };
+
+    const runtime = props.vm.runtime;
+    const [editorTabs, setEditorTabs] = React.useState(
+        () => Object.values(runtime.tabManager.tabs)
+    );
+    React.useEffect(() => {
+        const updateTabs = () => {
+            setEditorTabs(Object.values(runtime.tabManager.tabs));
+        };
+        runtime.on('EDITOR_TABS_UPDATE', updateTabs);
+        return () => {
+            runtime.off('EDITOR_TABS_UPDATE', updateTabs);
+        };
+    }, [runtime]);
 
     const unconstrainedWidth = (
         UNCONSTRAINED_NON_STAGE_WIDTH +
@@ -342,9 +358,10 @@ const GUIComponent = props => {
                                 selectedTabPanelClassName={tabClassNames.tabPanelSelected}
                                 onSelect={onActivateTab}
                             >
-                                <TabList className={tabClassNames.tabList}>
-                                    <Tab className={tabClassNames.tab}>
+                                <TabList className={tabClassNames.tabList} style={{'--selected-tab-layer': editorTabs.length + 4}}>
+                                    <Tab className={tabClassNames.tab} style={{'--tab-layer': editorTabs.length + 3}}>
                                         <img
+                                            className={styles.tabIcon}
                                             draggable={false}
                                             src={codeIcon()}
                                         />
@@ -357,8 +374,10 @@ const GUIComponent = props => {
                                     <Tab
                                         className={tabClassNames.tab}
                                         onClick={onActivateCostumesTab}
+                                        style={{'--tab-layer': editorTabs.length + 2}}
                                     >
                                         <img
+                                            className={styles.tabIcon}
                                             draggable={false}
                                             src={costumesIcon()}
                                         />
@@ -379,8 +398,10 @@ const GUIComponent = props => {
                                     <Tab
                                         className={tabClassNames.tab}
                                         onClick={onActivateSoundsTab}
+                                        style={{'--tab-layer': editorTabs.length + 1}}
                                     >
                                         <img
+                                            className={styles.tabIcon}
                                             draggable={false}
                                             src={soundsIcon()}
                                         />
@@ -390,6 +411,23 @@ const GUIComponent = props => {
                                             id="gui.gui.soundsTab"
                                         />
                                     </Tab>
+                                    {editorTabs.filter(tab => tab.visible !== false).map((tab, index) => (
+                                        <Tab
+                                            key={tab.id}
+                                            className={!tab.enabled ? tabClassNames.tabDisabled : tabClassNames.tab}
+                                            disabled={!tab.enabled}
+                                            style={{'--tab-layer': editorTabs.length - index}}
+                                        >
+                                            <span className={styles.tabIcon}>
+                                                <img
+                                                    draggable={false}
+                                                    src={tab.uri}
+                                                    style={{filter: tintFilter(theme.getGuiColors()['looks-secondary'])}}
+                                                />
+                                            </span>
+                                            <span>{tab.name}</span>
+                                        </Tab>
+                                    ))}
                                 </TabList>
                                 <TabPanel className={tabClassNames.tabPanel}>
                                     <Box className={styles.blocksWrapper}>
@@ -432,6 +470,26 @@ const GUIComponent = props => {
                                 <TabPanel className={tabClassNames.tabPanel}>
                                     {soundsTabVisible ? <SoundTab vm={vm} /> : null}
                                 </TabPanel>
+                                {editorTabs.filter(tab => tab.visible !== false).map(tab => (
+                                    <TabPanel key={tab.id} className={tabClassNames.tabPanel}>
+                                        <Box className={styles.tabContainer}>
+                                            <div ref={container => {
+                                                if (!container) return;
+
+                                                let element = null;
+
+                                                if(tab.element !== null) {
+                                                    element = tab.element;
+                                                } else {
+                                                    element = document.createElement('p');
+                                                    element.textContent = 'No tab content!';
+                                                    element.className = styles.tabContentGone;
+                                                }
+                                                container.replaceChildren(element);
+                                            }} />
+                                        </Box>
+                                    </TabPanel>
+                                ))}
                             </Tabs>
                             {backpackVisible ? (
                                 <Backpack host={backpackHost} />

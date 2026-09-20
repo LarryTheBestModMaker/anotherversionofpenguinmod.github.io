@@ -473,7 +473,7 @@ const GUIComponent = props => {
                                 {editorTabs.filter(tab => tab.visible !== false).map(tab => (
                                     <TabPanel key={tab.id} className={tabClassNames.tabPanel}>
                                         <Box className={styles.tabContainer}>
-                                            <div ref={container => {
+                                            <div style={width: "100%"} ref={container => {
                                                 if (!container) return;
 
                                                 let element = null;

@@ -133,10 +133,13 @@
     opacity: 0.4;
 }
 
+.tab .tab-icon {
+    filter: grayscale(100%);
+}
+
 .tab img {
     width: 1.375rem;
     height: 1.375rem;
-    filter: grayscale(100%);
 }
 
 [dir="ltr"] .tab img {
@@ -156,7 +159,7 @@
     transform: scaleX(-1);
 }
 
-.tab.is-selected img {
+.tab.is-selected .tab-icon {
     filter: none;
 }
 

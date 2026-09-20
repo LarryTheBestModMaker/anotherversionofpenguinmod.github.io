@@ -43,6 +43,7 @@ import SplashModal from '../../containers/splash-modal.jsx';
 import {STAGE_SIZE_MODES, FIXED_WIDTH, UNCONSTRAINED_NON_STAGE_WIDTH} from '../../lib/layout-constants';
 import {resolveStageSize} from '../../lib/screen-utils';
 import {Theme} from '../../lib/themes';
+import tintFilter from '../../lib/tint-filter';
 
 import {isRendererSupported, isBrowserSupported} from '../../lib/tw-environment-support-prober';
 
@@ -360,6 +361,7 @@ const GUIComponent = props => {
                                 <TabList className={tabClassNames.tabList} style={{'--selected-tab-layer': editorTabs.length + 4}}>
                                     <Tab className={tabClassNames.tab} style={{'--tab-layer': editorTabs.length + 3}}>
                                         <img
+                                            className={styles.tabIcon}
                                             draggable={false}
                                             src={codeIcon()}
                                         />
@@ -375,6 +377,7 @@ const GUIComponent = props => {
                                         style={{'--tab-layer': editorTabs.length + 2}}
                                     >
                                         <img
+                                            className={styles.tabIcon}
                                             draggable={false}
                                             src={costumesIcon()}
                                         />
@@ -398,6 +401,7 @@ const GUIComponent = props => {
                                         style={{'--tab-layer': editorTabs.length + 1}}
                                     >
                                         <img
+                                            className={styles.tabIcon}
                                             draggable={false}
                                             src={soundsIcon()}
                                         />
@@ -414,10 +418,13 @@ const GUIComponent = props => {
                                             disabled={!tab.enabled}
                                             style={{'--tab-layer': editorTabs.length - index}}
                                         >
-                                            <img
-                                                draggable={false}
-                                                src={tab.uri}
-                                            />
+                                            <span className={styles.tabIcon}>
+                                                <img
+                                                    draggable={false}
+                                                    src={tab.uri}
+                                                    style={{filter: tintFilter(theme.getGuiColors()['looks-secondary'])}}
+                                                />
+                                            </span>
                                             <span>{tab.name}</span>
                                         </Tab>
                                     ))}

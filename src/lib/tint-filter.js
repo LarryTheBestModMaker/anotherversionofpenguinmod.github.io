@@ -2,9 +2,7 @@ import { hex2rgb } from "./tw-color-utils";
 
 const tintFilter = (hex) => {
     if (!hex) return 'none';
-
     let rgb = hex2rgb(hex);
-    console.log(rgb, hex);
 
     return 'url("data:image/svg+xml,' +
         '<svg xmlns=\'http://www.w3.org/2000/svg\'>' +

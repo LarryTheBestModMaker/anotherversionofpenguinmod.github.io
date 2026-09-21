@@ -11,7 +11,6 @@ export default {
   "hide-flyout": () => import(/* webpackChunkName: "addon-entry-hide-flyout" */ "../addons/hide-flyout/_runtime_entry.js"),
   "mediarecorder": () => import(/* webpackChunkName: "addon-entry-mediarecorder" */ "../addons/mediarecorder/_runtime_entry.js"),
   "drag-drop": () => require("../addons/drag-drop/_runtime_entry.js"),
-  "debugger": () => import(/* webpackChunkName: "addon-entry-debugger" */ "../addons/debugger/_runtime_entry.js"),
   "mute-project": () => require("../addons/mute-project/_runtime_entry.js"),
   "vol-slider": () => import(/* webpackChunkName: "addon-entry-vol-slider" */ "../addons/vol-slider/_runtime_entry.js"),
   "clones": () => import(/* webpackChunkName: "addon-entry-clones" */ "../addons/clones/_runtime_entry.js"),
@@ -74,5 +73,4 @@ export default {
   "tw-remove-feedback": () => import(/* webpackChunkName: "addon-entry-tw-remove-feedback" */ "../addons/tw-remove-feedback/_runtime_entry.js"),
   "tw-disable-vibration": () => import(/* webpackChunkName: "addon-entry-tw-disable-vibration" */ "../addons/tw-disable-vibration/_runtime_entry.js"),
   "tw-disable-cloud-variables": () => import(/* webpackChunkName: "addon-entry-tw-disable-cloud-variables" */ "../addons/tw-disable-cloud-variables/_runtime_entry.js"),
-  "editor-stepping": () => import(/* webpackChunkName: "addon-entry-editor-stepping" */ "../addons/editor-stepping/_runtime_entry.js"),
 };

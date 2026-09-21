@@ -11,7 +11,6 @@ const addons = [
     'hide-flyout',
     'mediarecorder',
     'drag-drop',
-    'debugger',
     'mute-project',
     'vol-slider',
     'clones',
@@ -74,8 +73,7 @@ const addons = [
     'tw-remove-backpack',
     'tw-remove-feedback',
     'tw-disable-vibration',
-    'tw-disable-cloud-variables',
-    'editor-stepping'
+    'tw-disable-cloud-variables'
 ];
 
 const newAddons = [

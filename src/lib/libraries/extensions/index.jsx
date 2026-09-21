@@ -747,6 +747,25 @@ export const penguinmodGallery = [
     {
         name: (
             <FormattedMessage
+                defaultMessage="Debugger"
+                description="Name for the jwDebugger extension"
+                id="pm.gui.extension.jwDebugger.name"
+            />
+        ),
+        extensionId: 'jwDebugger',
+        iconURL: require('../extensions/penguinmod/jwDebugger.svg'),
+        description: (
+            <FormattedMessage
+                defaultMessage="Log important information to debug your code."
+                description="Description for the jwDebugger extension"
+                id="pm.gui.extension.jwDebugger.description"
+            />
+        ),
+        tags: ['pm']
+    },
+    {
+        name: (
+            <FormattedMessage
                 defaultMessage="Storage"
                 description="Name for the jgStorage extension"
                 id="pm.gui.extension.jgStorage.name"

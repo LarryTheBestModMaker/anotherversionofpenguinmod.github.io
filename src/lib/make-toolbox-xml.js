@@ -1,6 +1,7 @@
 import LazyScratchBlocks from './tw-lazy-scratch-blocks';
 import defaultBlockColors from './default-block-colors';
 import SettingsStore from '../editor-settings/settings-store-singleton';
+import {encodeString} from './b64-binary';
 
 const categorySeparator = '<sep gap="36"/>';
 
@@ -1428,7 +1429,7 @@ const _strings = function() {
         <block type="operator_decode">
             <value name="TEXT">
                 <shadow type="text">
-                    <field name="TEXT">${btoa('apple')}</field>
+                    <field name="TEXT">${encodeString(apple)}</field>
                 </shadow>
             </value>
         </block>

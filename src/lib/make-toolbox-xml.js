@@ -1428,7 +1428,7 @@ const _strings = function() {
         <block type="operator_decode">
             <value name="TEXT">
                 <shadow type="text">
-                    <field name="TEXT">${btoa(apple)}</field>
+                    <field name="TEXT">${btoa('apple')}</field>
                 </shadow>
             </value>
         </block>

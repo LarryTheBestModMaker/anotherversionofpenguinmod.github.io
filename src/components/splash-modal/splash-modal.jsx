@@ -20,6 +20,7 @@ const SplashModalComponent = props => (
         <Box className={styles.body}>
             <Box className={styles.column}>
                 <a onClick={props.onClose}>New Project</a>
+                <a onClick={props.onOpenPaint}>Open Paint</a>
                 <a>Load Project</a>
                 <a>Load Extension</a>
                 <a>Restore Points</a>

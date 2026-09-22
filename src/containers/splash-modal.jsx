@@ -26,7 +26,7 @@ const mapDispatchToProps = dispatch => ({
     onOpenPaint: () => {
         dispatch(closeSplashModal());
         dispatch(activateTab(COSTUMES_TAB_INDEX));
-        dispatch(setStageSize(STAGE_SIZE_MODES.small))
+        // dispatch(setStageSize(STAGE_SIZE_MODES.small))
     }
 });
 
